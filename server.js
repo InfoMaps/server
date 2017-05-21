@@ -16,8 +16,17 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '124.19.16.114:8080');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+    next();
+};
+
 app.use(bodyParser.json());
 app.use(methodOverride());
+app.use(allowCrossDomain);
 
 app.set('port', port);
 
